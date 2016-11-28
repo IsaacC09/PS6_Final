@@ -6,6 +6,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.UUID;
 
@@ -19,12 +20,14 @@ import domain.PersonDomainModel;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
+
 public class Person_Test {
  
 	private static PersonDomainModel person1;
 	private static PersonDomainModel person2;
 	private static UUID person1UUID = UUID.randomUUID();
 	private static UUID person2UUID = UUID.randomUUID();
+
 	
 	
 	@BeforeClass
@@ -39,7 +42,7 @@ public class Person_Test {
 		try {
 			person1Birth = dateFormat.parse("1994-11-27");
 		} catch (ParseException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 
@@ -58,24 +61,26 @@ public class Person_Test {
 		try {
 			person1Birth = dateFormat.parse("1994-11-27");
 		} catch (ParseException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 
 		person2.setPersonID(person2UUID);
-		person2.setFirstName("Mingkun");
-		person2.setMiddleName("a");
-		person2.setLastName("Chen");
+		person2.setFirstName("a");
+		person2.setMiddleName("b");
+		person2.setLastName("c");
 		person2.setBirthday(person1Birth);
 		person2.setCity("Elkton");
 		person2.setStreet("702 Stone Gate Blvd");
 		person2.setPostalCode(21921);
 
+		
 	}
 
 	@Test
 	public void addPersontest() {
 		PersonDAL.addPerson(person1);
+		PersonDAL.addPerson(person2);
 	}
 	
 	@Test
@@ -85,7 +90,8 @@ public class Person_Test {
 	
 	@Test
 	public void updatePersontest() {
-
+		person1.setMiddleName("z");
+		PersonDAL.updatePerson(person1);
 	}
 	
 	@Test
@@ -95,12 +101,13 @@ public class Person_Test {
 	
 	@Test
 	public void deletePersontest() {
-
+		PersonDAL.deletePerson(person1UUID);
 	}
 
 	
 	@AfterClass
 	public static void tearDownAfterClass() throws Exception {
-		
+		//PersonDAL.deletePerson(person1UUID);
+		PersonDAL.deletePerson(person2UUID);
 	}
 }
