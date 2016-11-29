@@ -15,7 +15,7 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 import ch.makery.address.util.LocalDateAdapter;
 import domain.PersonDomainModel;
-
+ 
 public class Person extends PersonDomainModel {
 
     public Person() {
