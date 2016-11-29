@@ -73,7 +73,7 @@ public class Person_Test {
 		person2.setCity("Elkton");
 		person2.setStreet("702 Stone Gate Blvd");
 		person2.setPostalCode(21921);
-
+ 
 		
 	}
 
@@ -85,7 +85,9 @@ public class Person_Test {
 	
 	@Test
 	public void getPersontest() {
-		PersonDAL.getPerson(person1UUID);
+		String expFirstName = person1.getFirstName();
+		assertEquals("Mingkun", expFirstName);
+		
 	}
 	
 	@Test
@@ -101,6 +103,7 @@ public class Person_Test {
 	
 	@Test
 	public void deletePersontest() {
+		PersonDAL.addPerson(person1);
 		PersonDAL.deletePerson(person1UUID);
 	}
 
